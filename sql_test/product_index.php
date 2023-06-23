@@ -23,23 +23,31 @@
        <thead>
         <tr>
 
-         <th>Name</th>
-         <th>Age</th>
-         <th>Sex</th>
-         <th>doj</th>
-         <th>City</th>
-         <th>Salary</th>
+         <th>Item_Name</th>
+         <th>price</th>
+         <th>qty</th>
+         <th>created_at</th>
+         <th>updated_at</th>
+         <th>Action</th>
         </tr>
        </thead>
        <tbody>
         <?php 
         include('functions.php');
-        $emp_lists = GetAllEmp();
-        foreach($emp_lists as $list) :
+        $products = getAllProducts();
+        foreach($products as $p) :
         ?>
         <tr>
-         <td><?= $list['name']; ?>
+         <td><?= $p['item_name']; ?> </td>
+         <td><?= $p['price']; ?> </td>
+         <td><?= $p['qty']; ?></td>
+         <td><?= $p['created_at']; ?> </td>
+         <td><?= $p['updated_at']; ?> </td>
          <td>
+          <a href="pro_details.php?id=<?= $p['id'];?>" class="btn btn-primary btn-sm">Detail</a>
+          <a href="pro_edit.php?id=<?= $p['id'];?>" class="btn btn-info btn-sm">Edit</a>
+          <a href="pro_del.php?id=<?= $p['id']?>" class="btn btn-danger btn-sm">Del</a>
+         </td>
         </tr>
         <?php endforeach; ?>
        </tbody>

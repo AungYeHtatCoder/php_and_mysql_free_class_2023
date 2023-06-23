@@ -20,29 +20,39 @@
      </div>
      <div class="card-body">
       <table class="table">
-       <thead>
-        <tr>
 
-         <th>Name</th>
-         <th>Age</th>
-         <th>Sex</th>
-         <th>doj</th>
-         <th>City</th>
-         <th>Salary</th>
-        </tr>
-       </thead>
-       <tbody>
-        <?php 
+       <?php 
+
+        $id = $_GET['id'];
         include('functions.php');
-        $emp_lists = GetAllEmp();
-        foreach($emp_lists as $list) :
+        $get_pro_by_id = getProductById($id);
         ?>
-        <tr>
-         <td><?= $list['name']; ?>
-         <td>
-        </tr>
-        <?php endforeach; ?>
-       </tbody>
+       <tr>
+        <th>ID</th>
+        <td><?= $get_pro_by_id['id']?></td>
+       </tr>
+       <tr>
+        <th>Item_name</th>
+        <td><?= $get_pro_by_id['item_name']?></td>
+       </tr>
+
+       <tr>
+        <th>Price</th>
+        <td><?= $get_pro_by_id['price']?></td>
+       </tr>
+       <tr>
+        <th>Qty</th>
+        <td><?= $get_pro_by_id['qty']?></td>
+       </tr>
+       <tr>
+        <th>created at</th>
+        <td><?= $get_pro_by_id['created_at']?></td>
+       </tr>
+       <tr>
+        <th>updated_at</th>
+        <td><?= $get_pro_by_id['updated_at']?></td>
+       </tr>
+
       </table>
      </div>
     </div>
@@ -53,25 +63,7 @@
       <h1>get total salary group by sex</h1>
      </div>
      <div class="card-body">
-      <table class="table">
-       <thead>
-        <tr>
-         <th>sex</th>
-         <th>salaray</th>
-        </tr>
-       </thead>
-       <tbody>
-        <tr>
-         <?php
-          $salaries = GetSalaryBySex();
-          foreach($salaries as $s) :
-          ?>
-         <td><?= $s['sex']?></td>
-         <td><?= $s['total_salary']?></td>
-        </tr>
-        <?php endforeach; ?>
-       </tbody>
-      </table>
+
      </div>
     </div>
    </div>
