@@ -1,8 +1,0 @@
-INSERT INTO city (name, country_code, disctrict, population)
-VALUES ('Myanmar', '100', 'Mandalay', '5000');
-
-
-INSERT INTO city (name, country_code, district, population)
-VALUES ('Yangon 1', 'US', 'District 1', '100000'),
-       ('Yangon 2', 'UK', 'District 2', '200000'),
-       ('Mandalay 3', 'CA', 'District 3', '300000');
