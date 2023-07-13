@@ -4,7 +4,9 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(20),
-    profile TEXT,
+    profile VARCHAR(250) DEFAULT 'default.jpg',
+    user_type VARCHAR(20) NOT NULL DEFAULT 'user',
+    cover_photo VARCHAR(250) DEFAULT 'default.jpg',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

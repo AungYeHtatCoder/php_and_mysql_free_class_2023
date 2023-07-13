@@ -1,6 +1,6 @@
 <?php
-include('../db/functions.php');
-$auth = check();
+//include('../db/functions.php');
+//$auth = check();
 // session_start();
 // $user_name = $_SESSION['user_name'];
 // $email = $_SESSION['email'];
