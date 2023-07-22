@@ -93,3 +93,133 @@ function redirectUser($user_type)
         echo "Unknown user type";
     }
 }
+
+
+// profile update
+function CoverPhotoUpdate($id, $cover_photo)
+{
+    global $conn;
+    $sql = "UPDATE users SET cover_photo = '$cover_photo' WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        return true;
+    } else {
+        // Add error handling and display the specific error message
+        echo "CoverPhoto update failed. Error: " . mysqli_error($conn);
+        return false;
+    }
+}
+
+function CategoryCreate($category_name)
+{
+ global $conn;
+ $sql = "insert into categories(category_name) VALUES('$category_name')";
+ $result = mysqli_query($conn, $sql);
+ if($result)
+ {
+  return true;
+ }else{
+  return false;
+ }
+}
+
+// get all categories
+function GetAllCategories()
+{
+    global $conn;
+    // Prepare and execute the SQL query
+$sql = "SELECT * FROM categories";
+$result = $conn->query($sql);
+
+// Check if any rows were returned
+if ($result->num_rows > 0) {
+    // Fetch the rows as an associative array
+    $categories = $result->fetch_all(MYSQLI_ASSOC);
+    return $categories;
+} else {
+    echo "No categories found.";
+}
+
+// Close the database connection
+$conn->close();
+
+}
+
+// category by id
+function GetCategoryById($id)
+{
+    global $conn;
+    $sql = "SELECT * FROM categories WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        $category = mysqli_fetch_assoc($result);
+        return $category;
+    } else {
+        return null;
+    }
+}
+
+// category update function 
+function UpdateCategory($id, $categoryName)
+{
+    global $conn;
+    
+    $categoryName = mysqli_real_escape_string($conn, $categoryName);
+    
+    $sql = "UPDATE categories SET category_name = '$categoryName' WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Category delete
+function DeleteCategory($id)
+{
+    global $conn;
+
+    $sql = "DELETE FROM categories WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// post create function
+function postCreate($post_title, $description, $post_image, $user_id)
+{
+    global $conn;
+    $post_title = mysqli_real_escape_string($conn, $post_title);
+    $description = mysqli_real_escape_string($conn, $description);
+    $sql = "INSERT INTO posts (post_title, description, post_image, user_id) VALUES('$post_title', '$description', '$post_image', '$user_id')";
+    $result = mysqli_query($conn, $sql);
+
+    if($result)
+    {
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+// get post by id
+function GetPostByID($user_id)
+{
+    global $conn;
+    $sql = "SELECT * FROM posts WHERE user_id = $user_id";
+    $result = mysqli_query($conn, $sql);
+    if($result && mysqli_num_rows($result) > 0){
+        $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $posts;
+    }else{
+        return array();
+    }
+}

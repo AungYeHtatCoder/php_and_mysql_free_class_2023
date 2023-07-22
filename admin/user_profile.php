@@ -1,4 +1,5 @@
 <?php
+include('auth.php');
 //include('../db/functions.php');
 //$auth = check();
 // session_start();
@@ -50,8 +51,20 @@ include('layouts/head.php');
 
            <div class="upper">
 
-            <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid">
+            <!-- <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid"> -->
+            <img src="../_actions/covers/<?= $auth['cover_photo']; ?>" class="img-fluid">
 
+            <div class="card">
+             <div class="card-body">
+              <div class="mb-3">
+               <form action="../_actions/cover_photo_update.php" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="id" value="<?= $auth['id']?>">
+                <input type="file" name="cover_photo" class="form-control">
+                <button class="btn btn-primary mt-3" name="cover_photo_update">Upload</button>
+               </form>
+              </div>
+             </div>
+            </div>
            </div>
 
            <div class="user text-center">

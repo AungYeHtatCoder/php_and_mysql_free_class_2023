@@ -1,4 +1,5 @@
-<h2>admin dashboard</h2><?php 
+<?php 
+include('auth.php');
 include('layouts/head.php');
 ?>
 
