@@ -292,7 +292,9 @@ include('layouts/head.php');
       <!-- <li class="breadcrumb-item active">Dashboard</li> -->
      </ol>
 
+
      <div class="row">
+
       <div class="col-md-8">
        <div class="card mb-4">
         <div class="card-header">
@@ -374,6 +376,46 @@ include('layouts/head.php');
          </div>
         </div>
        </div>
+       <div class="row">
+        <!-- friend request ui start -->
+
+        <div class="friend-row">
+
+         <div class="col-md-3 mr-3">
+          <div class="friend-container">
+           <div class="friend-box">
+            <div class="friend-box-title">
+             <h4>
+              username
+             </h4>
+            </div>
+            <div class="friend-profile">
+             <img src="../_actions/profile/1.jpg" alt="">
+            </div>
+            <form action="../_actions/friend_create.php" method="post">
+             <input type="hidden" name="user_id" value="">
+             <input type="hidden" name="friend_id" value="">
+
+
+             <!-- Show message when friend request is already sent -->
+             <span>You requested this user</span>
+
+             <!-- Show friend request button when not requested -->
+             <button class="f-req-btn">Request Friend</button>
+
+            </form>
+           </div>
+          </div>
+         </div>
+
+
+
+        </div>
+        <!-- friend request ui end -->
+
+       </div>
+
+
        <!-- display post start -->
        <div class="row">
         <div class="col-md-2 mt-3">
@@ -390,15 +432,28 @@ include('layouts/head.php');
 
         <div class="col-md-6 mt-3">
          <!-- foreach loop start -->
+         <?php
+         $user_id = $auth['id'];
+         $posts = GetPostByID($user_id);
+         if(empty($posts)) :
+         ?>
+         <p>no posts found for this user. </p>
+         <?php 
+         else:
+         ?>
+         <?php 
+         foreach($posts as $post) :
+         
+         ?>
          <div class="post-container card">
           <div class="card-header">
-           <h2 class="post-title">first post</h2>
+           <h2 class="post-title"><?= $post['post_title']?></h2>
           </div>
           <div class="post-body card-body">
            <div class="post-upload-time">
 
             <h2 class="display-date">
-             21-12-2023
+             <?= $post['created_at']; ?>
             </h2>
            </div>
            <div class="post-image">
@@ -406,7 +461,7 @@ include('layouts/head.php');
            </div>
            <div class="post-description">
             <p class="description">
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nam!
+             <?= $post['description']; ?>
             </p>
            </div>
 
@@ -452,7 +507,9 @@ include('layouts/head.php');
            </div>
           </div>
          </div>
+         <?php endforeach; ?>
         </div>
+        <?php endif; ?>
 
        </div>
        <!-- display post end -->
